@@ -111,17 +111,25 @@ Registra un usuario, la aplicación debería estar corriendo correctamente.
 
 ## Preguntas
 
+Integrantes:
+Bryan Soto Astudillo
+Maria Ignacia Cobo
+
 1. Revisa el archivo `Dockerfile` en la carpeta `users-svc` y compáralo con el mismo archivo en la carpeta `ws-server`. ¿Qué te llama la atención? Ahora revisa la sentencia `command` para los respectivos servicios en el archivo `docker-compose.yml`. ¿Qué concluyes?
+   Los archivos Dockerfile de users-svc y ws-server son exactamente iguales. La sentencia command del archivo docker-compose.yml es diferente y se puede concluir que esta linea corresponde a la configuración del archivo de entrada o inicio de la aplicación.
 
 2. Revisa el archivo `Dockerfile` en la carpeta `frontend`. ¿Qué te llama la atención? ¿En qué es diferente de los otros archivos `Dockerfile`?
+   Realiza la instalación de npm, luego compila y finalmente copia todo de la versión inicial al nginx.
 
 3. ¿Para qué sirve el servicio flyway? ¿Qué pasa al hacer `docker ps` con respecto a este servicio?
-
+   Flyway sirve para conectarse a la BD configurada, docker ps muestra los contenedores activos en el momento de la ejecución del comando.
+   
 4. ¿Cuantas imágenes se crean? ¿Cuántos contenedores están activos?
-
-5. Deten los contenedores con `docker-compose down`, luego reinicia con `docker-compose up -d`. Ingresa a la base de datos. ¿Qué pasa con los datos? 
-
-6. Baja los contenedres. Crea un volumen para postgres agregando estas sentencias en el servicio `postgres`: 
+ 5 imagenes postgres, flyway, users-svc, frontend, ws-server
+   
+5. Deten los contenedores con `docker-compose down`, luego reinicia con `docker-compose up -d`. Ingresa a la base de datos. ¿Qué pasa con los datos?
+   Se borran todos los datos.
+9. Baja los contenedres. Crea un volumen para postgres agregando estas sentencias en el servicio `postgres`: 
 
 ```
  volumes:
@@ -131,4 +139,4 @@ Registra un usuario, la aplicación debería estar corriendo correctamente.
 Reinicia los contenedores. Explica qué pasa con la base de datos después de hacer esto.
 
 ¿Qué pasa con la carpeta `data`, qué crees que contiene?
-
+contiene un espacio para poder almacenar de forma permanente la data, no se borra al reiniciar el contenedor.
